@@ -1,18 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://wiim220v10uc"]
+[gd_scene load_steps=8 format=3 uid="uid://wiim220v10uc"]
 
-[ext_resource type="Script" path="res://classes/base/objects_map_2d.gd" id="1_q7puy"]
-[ext_resource type="Script" path="res://classes/user/user.gd" id="2_ya7pq"]
-[ext_resource type="Script" path="res://classes/user/observer.gd" id="3_bqfv4"]
+[ext_resource type="Script" uid="uid://bjmi5orc1otld" path="res://classes/base/objects_map_2d.gd" id="1_q7puy"]
+[ext_resource type="Shader" uid="uid://btadrp7tcqbjc" path="res://resource/UI/bg_shader.gdshader" id="2_7mycd"]
+[ext_resource type="Script" uid="uid://dg2nwj6krhqx2" path="res://classes/user/user.gd" id="2_ya7pq"]
+[ext_resource type="Script" uid="uid://cd2dl6s3d8o71" path="res://classes/user/observer.gd" id="3_bqfv4"]
 [ext_resource type="Theme" uid="uid://cuwp82b2otuec" path="res://resource/UI/main_theme.tres" id="4_25dgf"]
 [ext_resource type="Texture2D" uid="uid://cllh30bgw5pr" path="res://resource/UI/device_icon.png" id="5_j4rcb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("2_7mycd")
+shader_parameter/import_color = Color(1, 0, 0, 1)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="ObjectsMap2D" type="Node2D" parent="."]
 script = ExtResource("1_q7puy")
-hight = 200.0
-width = 400.0
-color = Color(0.613856, 0.347302, 0.554037, 1)
+hight = 2000.0
+width = 4000.0
+color = Color(0.593379, 0.329569, 0.66577, 1)
+bg_material = SubResource("ShaderMaterial_272bh")
 
 [node name="User" type="Node2D" parent="." node_paths=PackedStringArray("observer")]
 script = ExtResource("2_ya7pq")
