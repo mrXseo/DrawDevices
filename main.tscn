@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://wiim220v10uc"]
+
+[ext_resource type="Script" path="res://classes/base/objects_map_2d.gd" id="1_q7puy"]
+[ext_resource type="Script" path="res://classes/user/user.gd" id="2_ya7pq"]
+[ext_resource type="Script" path="res://classes/user/observer.gd" id="3_bqfv4"]
+[ext_resource type="Theme" uid="uid://cuwp82b2otuec" path="res://resource/UI/main_theme.tres" id="4_25dgf"]
+[ext_resource type="Texture2D" uid="uid://cllh30bgw5pr" path="res://resource/UI/device_icon.png" id="5_j4rcb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ObjectsMap2D" type="Node2D" parent="."]
+script = ExtResource("1_q7puy")
+hight = 200.0
+width = 400.0
+color = Color(0.613856, 0.347302, 0.554037, 1)
+
+[node name="User" type="Node2D" parent="." node_paths=PackedStringArray("observer")]
+script = ExtResource("2_ya7pq")
+observer = NodePath("UserObserver")
+
+[node name="UserObserver" type="Camera2D" parent="User" node_paths=PackedStringArray("UserUI")]
+script = ExtResource("3_bqfv4")
+UserUI = NodePath("UserUI")
+
+[node name="UserUI" type="Control" parent="User/UserObserver"]
+clip_contents = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 1151.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="User/UserObserver/UserUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -181.0
+offset_right = -26.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MenuButton" type="MenuButton" parent="User/UserObserver/UserUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -82.0
+offset_bottom = 85.0
+grow_horizontal = 0
+theme = ExtResource("4_25dgf")
+icon = ExtResource("5_j4rcb")
+expand_icon = true
