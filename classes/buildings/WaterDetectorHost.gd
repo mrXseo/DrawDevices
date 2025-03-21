@@ -1,3 +1,0 @@
-extends DeviceSistem
-
-class WaterDetectorHost
