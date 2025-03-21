@@ -4,8 +4,8 @@
 [ext_resource type="Shader" uid="uid://btadrp7tcqbjc" path="res://resource/UI/bg_shader.gdshader" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://dg2nwj6krhqx2" path="res://classes/user/user.gd" id="2_ya7pq"]
 [ext_resource type="Script" uid="uid://cd2dl6s3d8o71" path="res://classes/user/observer.gd" id="3_bqfv4"]
-[ext_resource type="Theme" uid="uid://cuwp82b2otuec" path="res://resource/UI/main_theme.tres" id="4_25dgf"]
-[ext_resource type="Texture2D" uid="uid://cllh30bgw5pr" path="res://resource/UI/device_icon.png" id="5_j4rcb"]
+[ext_resource type="Script" uid="uid://cmluq6ajp6msj" path="res://menu_devices.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://d280sln13xg2a" path="res://local_settings.gd" id="6_7mycd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
 shader = ExtResource("2_7mycd")
@@ -42,28 +42,85 @@ offset_bottom = 640.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ItemList" type="ItemList" parent="User/UserObserver/UserUI"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -230.0
-offset_top = -181.0
-offset_right = -26.0
-offset_bottom = -26.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="Locker" type="Timer" parent="User/UserObserver/UserUI"]
+wait_time = 0.2
+one_shot = true
 
-[node name="MenuButton" type="MenuButton" parent="User/UserObserver/UserUI"]
+[node name="MenuDevices" type="Button" parent="User/UserObserver/UserUI"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -82.0
-offset_bottom = 85.0
+offset_left = -50.0
+offset_top = 3.0
+offset_right = -2.0
+offset_bottom = 52.0
 grow_horizontal = 0
-theme = ExtResource("4_25dgf")
-icon = ExtResource("5_j4rcb")
-expand_icon = true
+script = ExtResource("5_lquwl")
+
+[node name="FixateButton" type="Button" parent="User/UserObserver/UserUI/MenuDevices"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+offset_left = -32.0
+offset_top = 17.0
+offset_right = -2.0
+offset_bottom = 47.0
+alignment = 0
+
+[node name="MenuPanel" type="Panel" parent="User/UserObserver/UserUI/MenuDevices"]
+custom_minimum_size = Vector2(170, 70)
+layout_mode = 0
+offset_left = -122.0
+offset_top = 51.0
+offset_right = 48.0
+offset_bottom = 121.0
+
+[node name="GridContainer" type="GridContainer" parent="User/UserObserver/UserUI/MenuDevices/MenuPanel"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -25.0
+offset_right = 79.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Button" type="Button" parent="User/UserObserver/UserUI/MenuDevices/MenuPanel/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="User/UserObserver/UserUI/MenuDevices/MenuPanel/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="User/UserObserver/UserUI/MenuDevices/MenuPanel/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="LocalSettings" type="Panel" parent="User/UserObserver/UserUI"]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 381.0
+offset_right = 965.0
+offset_bottom = 510.0
+script = ExtResource("6_7mycd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="User/UserObserver/UserUI/LocalSettings"]
+layout_mode = 0
+offset_right = 117.0
+offset_bottom = 131.0
+
+[node name="DeleteButton" type="Button" parent="User/UserObserver/UserUI/LocalSettings/VBoxContainer"]
+layout_mode = 2
+text = "Удалить"
+
+[connection signal="timeout" from="User/UserObserver/UserUI/Locker" to="User/UserObserver/UserUI/MenuDevices" method="_on_locker_timeout"]
+[connection signal="pressed" from="User/UserObserver/UserUI/MenuDevices" to="User/UserObserver/UserUI/MenuDevices" method="_on_pressed"]
+[connection signal="pressed" from="User/UserObserver/UserUI/MenuDevices/FixateButton" to="User/UserObserver/UserUI/MenuDevices" method="_on_fixate_button_pressed"]

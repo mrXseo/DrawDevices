@@ -19,9 +19,17 @@ func _ready() -> void:
 	background.size.x = width
 	background.size.y = hight
 	background.material = bg_material
-	var bg_import_color = background.material.get_shader_parameter("import_color")
-	
+	background.material.set_shader_parameter("import_color", background.color)
 
+func found_devices_in_point(point : Vector2, excepts : Array[DeviceSimplest]) -> DeviceSimplest:
+	var the_point = Node2D.new()
+	the_point.global_position.point
+	for children in get_children():
+		if children is DeviceSimplest or children is DeviceSistem:
+			if children.in_check(the_point):
+				if not children in excepts:
+					return children
+	return null
 
 func _process(delta: float) -> void:
 	pass

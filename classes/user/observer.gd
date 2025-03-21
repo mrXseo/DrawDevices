@@ -11,11 +11,16 @@ class_name UserObserver
 
 var user : User
 
+var move_cursor_image : Image = Image.new()
+var move_cursor_image_resize = 16
+
+
 func set_user(new_user:User):
 	user = new_user
 
 var MOUSE_BUTTON_LEFT_PRESSED_FLAG = false
 var MOUSE_BUTTON_RIGHT_PRESSED_FLAG = false
+var MOUSE_WHILE_BUTTON_PRESSED_FLAG = false
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -31,10 +36,14 @@ func _input(event):
 			zoom += Vector2(0.1, 0.1)
 			if zoom.x > zoom_max:
 				zoom = Vector2(zoom_max, zoom_max)
-		print(zoom)
+		elif event.button_index == MOUSE_BUTTON_MIDDLE:
+			MOUSE_WHILE_BUTTON_PRESSED_FLAG = event.pressed
 	elif event is InputEventMouseMotion:
-		if MOUSE_BUTTON_LEFT_PRESSED_FLAG:
+		if MOUSE_WHILE_BUTTON_PRESSED_FLAG:
 			user.global_position -= event.relative*(1/zoom.x)
+			Input.set_custom_mouse_cursor(move_cursor_image)
+		else:
+			Input.set_custom_mouse_cursor(null)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,10 +51,16 @@ func _ready() -> void:
 	UserUI.position = Vector2(0,0)
 	UserUI.position -= UserUI.size/2
 	print(UserUI.position)
+	move_cursor_image.load("res://7727808.png")
+	move_cursor_image.resize(
+		move_cursor_image.get_width()/move_cursor_image_resize,
+		move_cursor_image.get_height()/move_cursor_image_resize
+	)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print(MOUSE_WHILE_BUTTON_PRESSED_FLAG)
 	if user.mouse_mode == user.MOUSE_MODES.CLEAR:
 		pass
 	UserUI.size = get_viewport().get_size()
@@ -53,3 +68,4 @@ func _process(delta: float) -> void:
 	UserUI.position = Vector2(0,0)
 	UserUI.position -= Vector2( UserUI.size.x*UserUI.scale.x,
 								UserUI.size.y*UserUI.scale.y)/2
+	
