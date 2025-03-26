@@ -14,7 +14,7 @@ func set_width(new_width : int) -> void:
 func in_check(point : Node2D) -> bool:
 	var X = point.global_position.x 
 	var Y = point.global_position.y
-	if global_position.x <= X < global_position.x+width:
-		if global_position.y <= Y < global_position.y+hight:
+	if global_position.x <= X and X < global_position.x+width:
+		if global_position.y <= Y and Y < global_position.y+hight:
 			return true
 	return false

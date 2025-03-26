@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wiim220v10uc"]
+[gd_scene load_steps=8 format=3 uid="uid://wiim220v10uc"]
 
 [ext_resource type="Script" uid="uid://bjmi5orc1otld" path="res://classes/base/objects_map_2d.gd" id="1_q7puy"]
 [ext_resource type="Shader" uid="uid://btadrp7tcqbjc" path="res://resource/UI/bg_shader.gdshader" id="2_7mycd"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" uid="uid://cd2dl6s3d8o71" path="res://classes/user/observer.gd" id="3_bqfv4"]
 [ext_resource type="Script" uid="uid://cmluq6ajp6msj" path="res://menu_devices.gd" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://d280sln13xg2a" path="res://local_settings.gd" id="6_7mycd"]
-[ext_resource type="Texture2D" uid="uid://b0i5yv1cir3u8" path="res://resource/device_textures/water_detector/WaterDetectorHost.png" id="6_272bh"]
-[ext_resource type="Script" uid="uid://ct16rdqf2o638" path="res://water_detector_add_button.gd" id="7_5vw27"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
 shader = ExtResource("2_7mycd")
@@ -62,7 +60,6 @@ grow_horizontal = 0
 script = ExtResource("5_lquwl")
 
 [node name="FixateButton" type="Button" parent="User/UserObserver/UserUI/MenuDevices"]
-visible = false
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 offset_left = -32.0
@@ -72,7 +69,6 @@ offset_bottom = 47.0
 alignment = 0
 
 [node name="MenuPanel" type="Panel" parent="User/UserObserver/UserUI/MenuDevices"]
-visible = false
 custom_minimum_size = Vector2(170, 70)
 layout_mode = 0
 offset_left = -122.0
@@ -96,12 +92,9 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 
-[node name="WaterDetectorAddButton" type="Button" parent="User/UserObserver/UserUI/MenuDevices/MenuPanel/GridContainer"]
+[node name="Button" type="Button" parent="User/UserObserver/UserUI/MenuDevices/MenuPanel/GridContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-icon = ExtResource("6_272bh")
-flat = true
-script = ExtResource("7_5vw27")
 
 [node name="Button2" type="Button" parent="User/UserObserver/UserUI/MenuDevices/MenuPanel/GridContainer"]
 custom_minimum_size = Vector2(50, 50)
@@ -112,7 +105,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
 [node name="LocalSettings" type="Panel" parent="User/UserObserver/UserUI"]
-visible = false
 layout_mode = 0
 offset_left = 848.0
 offset_top = 381.0
@@ -132,4 +124,3 @@ text = "Удалить"
 [connection signal="timeout" from="User/UserObserver/UserUI/Locker" to="User/UserObserver/UserUI/MenuDevices" method="_on_locker_timeout"]
 [connection signal="pressed" from="User/UserObserver/UserUI/MenuDevices" to="User/UserObserver/UserUI/MenuDevices" method="_on_pressed"]
 [connection signal="pressed" from="User/UserObserver/UserUI/MenuDevices/FixateButton" to="User/UserObserver/UserUI/MenuDevices" method="_on_fixate_button_pressed"]
-[connection signal="pressed" from="User/UserObserver/UserUI/MenuDevices/MenuPanel/GridContainer/WaterDetectorAddButton" to="User/UserObserver" method="_on_water_detector_add_button_pressed"]

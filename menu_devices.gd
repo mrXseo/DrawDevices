@@ -27,7 +27,6 @@ func switch_menu() -> int:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if menu_panel.visible:
-			print("CNFNH")
 			if not check_event_point_in(self, event.position*$"..".scale):
 				switch_menu()
 
@@ -36,7 +35,6 @@ func check_event_point_in(zone: Control, global_event_pos : Vector2) -> bool:
 	var mod_global_rect = zone.get_global_rect()
 	mod_global_rect.position -= $"..".global_position
 	mod_global_rect.size *= $"..".scale
-	print(global_event_pos, mod_global_rect, $"..".global_position)
 	if mod_global_rect.has_point(global_event_pos):
 			return true
 	for children in zone.get_children():
