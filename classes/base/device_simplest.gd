@@ -29,7 +29,7 @@ func get_sistemed_name() -> String:
 func get_data() -> Dictionary:
 	return data
 
-func in_check(point:Node2D) -> bool:
+func in_check(point : Vector2) -> bool:
 	return local_space.in_check(point)
 
 

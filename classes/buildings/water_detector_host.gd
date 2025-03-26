@@ -16,8 +16,8 @@ func _init() -> void:
 	""" Задаем текстуру и выравниваем по размеру прибора. """ 
 	sprite.texture = preload("res://resource/device_textures/water_detector/WaterDetectorHost.png")
 	sprite.texture = Tools.texture_resize(sprite.texture, local_space.width, local_space.hight)
+	sprite.position = Vector2(HIGHT/2, WIDTH/2)
 	add_child(sprite)
 
-
-func _ready() -> void:
-	pass
+func in_check(point : Vector2) -> bool:
+	return local_space.in_check(point)

@@ -26,6 +26,9 @@ bg_material = SubResource("ShaderMaterial_272bh")
 script = ExtResource("2_ya7pq")
 observer = NodePath("UserObserver")
 
+[node name="Locker" type="Timer" parent="User"]
+wait_time = 0.1
+
 [node name="UserObserver" type="Camera2D" parent="User" node_paths=PackedStringArray("UserUI")]
 script = ExtResource("3_bqfv4")
 UserUI = NodePath("UserUI")
@@ -129,6 +132,7 @@ offset_bottom = 131.0
 layout_mode = 2
 text = "Удалить"
 
+[connection signal="timeout" from="User/Locker" to="User" method="_on_locker_timeout"]
 [connection signal="timeout" from="User/UserObserver/UserUI/Locker" to="User/UserObserver/UserUI/MenuDevices" method="_on_locker_timeout"]
 [connection signal="pressed" from="User/UserObserver/UserUI/MenuDevices" to="User/UserObserver/UserUI/MenuDevices" method="_on_pressed"]
 [connection signal="pressed" from="User/UserObserver/UserUI/MenuDevices/FixateButton" to="User/UserObserver/UserUI/MenuDevices" method="_on_fixate_button_pressed"]

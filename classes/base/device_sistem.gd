@@ -10,7 +10,7 @@ func add_device( new_device : DeviceSimplest ) -> void:
 	devices.append(new_device)
 	add_child(new_device)
 
-func in_check(point:Node2D) -> bool:
+func in_check(point : Vector2) -> bool:
 	if local_space.in_check(point):
 		return true
 	for device in devices:

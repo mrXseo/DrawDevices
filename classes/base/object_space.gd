@@ -11,9 +11,9 @@ func set_hight(new_hight : int) -> void:
 func set_width(new_width : int) -> void:
 	width = new_width
 
-func in_check(point : Node2D) -> bool:
-	var X = point.global_position.x 
-	var Y = point.global_position.y
+func in_check(point : Vector2) -> bool:
+	var X = point.x 
+	var Y = point.y
 	if global_position.x <= X and X < global_position.x+width:
 		if global_position.y <= Y and Y < global_position.y+hight:
 			return true

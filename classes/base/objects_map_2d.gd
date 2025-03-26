@@ -22,11 +22,9 @@ func _ready() -> void:
 	background.material.set_shader_parameter("import_color", background.color)
 
 func found_devices_in_point(point : Vector2, excepts : Array[DeviceSimplest] = []) -> DeviceSimplest:
-	var the_point = Node2D.new()
-	print(get_tree_string_pretty())
 	for children in get_children():
 		if children is DeviceSimplest and (not (children in excepts)):
-			if children.in_check(the_point):
+			if children.in_check(point):
 				return children
 	return null
 
